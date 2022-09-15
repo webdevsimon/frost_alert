@@ -8,14 +8,20 @@ describe('Navigation', () => {
     // Start from the index page
     cy.visit('http://localhost:3000/')
 
+    cy.get('input[name="location"]').type('Telford')
+
+    cy.get('ul.locations').contains('Telford')
+
     // Find a link with an href attribute containing "about" and click it
-    cy.get('a[href*="about"]').click()
+    cy.get('li[data*="Telford"]').click()
 
-    // The new url should include "/about"
-    cy.url().should('include', '/about')
+    // cy.get('ul.locations').not('li')
 
-    // The new page should contain an h1 with "About page"
-    cy.get('h1').contains('About Page')
+    // // The new url should include "/about"
+    // cy.url().should('include', '/about')
+
+    // // The new page should contain an h1 with "About page"
+    // cy.get('h1').contains('About Page')
   })
 })
 
